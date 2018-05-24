@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ApiGuideDemo</string>
+    <string name="title_activity_guide">GuideActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Api Guide</string>
+    <string name="nav_header_subtitle">developer.android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="guide_connectivity">Connectivity</string>
+    <string name="guide_activities">Activities</string>
+    <string name="guide_intent">Intents and intent filters</string>
+    <string name="guide_user_interface"><![CDATA[User Interface & navigation]]></string>
+    <string name="guide_image"><![CDATA[Image & Graphics]]></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
