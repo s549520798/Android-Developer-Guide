@@ -1,24 +1,21 @@
 package com.lazylee.apiguidedemo.intents;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.lazylee.apiguidedemo.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link IntentsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class IntentsFragment extends Fragment {
+public class IntentsFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "IntentsFragment";
 
-
-
+    private Button mBtn;
+    private Button mBtn2;
 
     public IntentsFragment() {
         // Required empty public constructor
@@ -30,10 +27,8 @@ public class IntentsFragment extends Fragment {
      *
      * @return A new instance of fragment IntentsFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static IntentsFragment newInstance() {
         IntentsFragment fragment = new IntentsFragment();
-
         return fragment;
     }
 
@@ -46,7 +41,25 @@ public class IntentsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.intents_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.intents_fragment, container, false);
+        mBtn = rootView.findViewById(R.id.button);
+        mBtn2 = rootView.findViewById(R.id.common_intent);
+        mBtn.setOnClickListener(this);
+        mBtn2.setOnClickListener(this);
+        return rootView;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button:
+                break;
+            case R.id.common_intent:
+                Intent intent = new Intent(getContext(),CommonIntentActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
 }
