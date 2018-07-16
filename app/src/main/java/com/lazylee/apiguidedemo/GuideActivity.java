@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import com.lazylee.apiguidedemo.activities.ActivitiesFragment;
 import com.lazylee.apiguidedemo.connectivity.ConnectivityFragment;
 import com.lazylee.apiguidedemo.intents.IntentsFragment;
+import com.lazylee.apiguidedemo.recyclerview.RecyclerFragment;
 
 import static com.lazylee.apiguidedemo.FragmentHelper.getCurrentVisibleFragment;
 import static com.lazylee.apiguidedemo.FragmentHelper.getFragmentByTag;
@@ -30,6 +31,8 @@ public class GuideActivity extends AppCompatActivity
     public static final int TYPE_ACTIVITIES = 0;
     public static final int TYPE_INTENTS = 1;
     public static final int TYPE_CONNECTIVITY = 13;
+    public static final int TYPE_RECYCLER = 14;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +54,7 @@ public class GuideActivity extends AppCompatActivity
     private void setEnterFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container_view, ActivitiesFragment.newInstance(),ActivitiesFragment.TAG)
+                .replace(R.id.container_view, ActivitiesFragment.newInstance(), ActivitiesFragment.TAG)
                 .commit();
     }
 
@@ -93,58 +96,69 @@ public class GuideActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_activities:
-                onFragmentChanges(getSupportFragmentManager(),TYPE_ACTIVITIES);
+                onFragmentChanges(getSupportFragmentManager(), TYPE_ACTIVITIES);
                 actionBar.setTitle("ACTIVITIES");
                 break;
             case R.id.nav_intents:
-                onFragmentChanges(getSupportFragmentManager(),TYPE_INTENTS);
+                onFragmentChanges(getSupportFragmentManager(), TYPE_INTENTS);
                 actionBar.setTitle("INTENTS");
                 break;
             case R.id.nav_image:
                 break;
             case R.id.nav_connectivity:
-                onFragmentChanges(getSupportFragmentManager(),TYPE_CONNECTIVITY);
+                onFragmentChanges(getSupportFragmentManager(), TYPE_CONNECTIVITY);
                 actionBar.setTitle("CONNECTIVITY");
                 break;
             case R.id.nav_user_interface:
+                break;
+            case R.id.nav_recycler:
+                onFragmentChanges(getSupportFragmentManager(), TYPE_RECYCLER);
                 break;
             default:
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void onFragmentChanges(FragmentManager manager,int type){
+    private void onFragmentChanges(FragmentManager manager, int type) {
         Fragment currentFragment = getCurrentVisibleFragment(manager);
         ActivitiesFragment activitiesFragment = (ActivitiesFragment) getFragmentByTag(manager, ActivitiesFragment.TAG);
         IntentsFragment intentsFragment = (IntentsFragment) getFragmentByTag(manager, IntentsFragment.TAG);
         ConnectivityFragment connectivityFragment = (ConnectivityFragment) getFragmentByTag(manager, ConnectivityFragment.TAG);
+        RecyclerFragment recyclerFragment = (RecyclerFragment) getFragmentByTag(manager,RecyclerFragment.TAG);
         switch (type) {
             case TYPE_ACTIVITIES:
-                if (activitiesFragment == null){
-                    addAndHideFragment(manager,ActivitiesFragment.newInstance(),currentFragment);
-                }else {
-                    showAndHideFragment(manager,activitiesFragment,currentFragment);
+                if (activitiesFragment == null) {
+                    addAndHideFragment(manager, ActivitiesFragment.newInstance(), currentFragment);
+                } else {
+                    showAndHideFragment(manager, activitiesFragment, currentFragment);
                 }
                 break;
             case TYPE_INTENTS:
-                if (intentsFragment == null){
-                    addAndHideFragment(manager,IntentsFragment.newInstance(),currentFragment);
-                }else {
-                    showAndHideFragment(manager,intentsFragment,currentFragment);
+                if (intentsFragment == null) {
+                    addAndHideFragment(manager, IntentsFragment.newInstance(), currentFragment);
+                } else {
+                    showAndHideFragment(manager, intentsFragment, currentFragment);
                 }
 
                 break;
             case TYPE_CONNECTIVITY:
-                if (connectivityFragment == null){
-                    addAndHideFragment(manager,ConnectivityFragment.newInstance(),currentFragment);
-                }else {
-                    showAndHideFragment(manager,connectivityFragment,currentFragment);
+                if (connectivityFragment == null) {
+                    addAndHideFragment(manager, ConnectivityFragment.newInstance(), currentFragment);
+                } else {
+                    showAndHideFragment(manager, connectivityFragment, currentFragment);
                 }
 
+                break;
+            case TYPE_RECYCLER:
+                if (recyclerFragment == null) {
+                    addAndHideFragment(manager, RecyclerFragment.newInstance(), currentFragment);
+                } else {
+                    showAndHideFragment(manager, recyclerFragment, currentFragment);
+                }
                 break;
         }
     }

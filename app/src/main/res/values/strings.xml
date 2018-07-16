@@ -12,5 +12,6 @@
     <string name="guide_intent">Intents and intent filters</string>
     <string name="guide_user_interface"><![CDATA[User Interface & navigation]]></string>
     <string name="guide_image"><![CDATA[Image & Graphics]]></string>
+    <string name="guide_recycler">RecyclerView</string>
 
 </resources>
