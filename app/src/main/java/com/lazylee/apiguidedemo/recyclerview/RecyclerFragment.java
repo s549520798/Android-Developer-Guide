@@ -53,16 +53,16 @@ public class RecyclerFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.recycler_fragment,container,false);
         mRecyclerView = rootView.findViewById(R.id.recycler_view);
-        return inflater.inflate(R.layout.recycler_fragment, container, false);
+        return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,false));
         mAdapter = new SampleAdapter(mList);
         mRecyclerView.setAdapter(mAdapter);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             mList.add("测试数据  : " + i+1);
         }
         mAdapter.notifyDataSetChanged();
