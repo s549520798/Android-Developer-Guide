@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.SampleViewHolder> {
 
     private ArrayList<String> mlist;
+    private OnItemClickListener itemClickListener = null;
+    private OnItemLongClickListener itemLongClickListener = null;
 
     public SampleAdapter(ArrayList<String> mlist) {
         this.mlist = mlist;
@@ -27,13 +29,40 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.SampleView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SampleViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SampleViewHolder holder, final int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onClick(v, position);
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return itemLongClickListener.onLongClick(v, position);
+            }
+        });
         holder.bindView(position, mlist.get(position));
     }
 
     @Override
     public int getItemCount() {
         return mlist == null ? 0 : mlist.size();
+    }
+
+    public void addFooter(String string){
+        if (mlist != null){
+            mlist.add(string);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    public void setItemLongClickListener(OnItemLongClickListener itemLongClickListener) {
+        this.itemLongClickListener = itemLongClickListener;
     }
 
     public class SampleViewHolder extends RecyclerView.ViewHolder {
@@ -51,5 +80,13 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.SampleView
             mTvID.setText("" + position);
             mTvStr.setText(string);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onClick(View view, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        boolean onLongClick(View view, int position);
     }
 }

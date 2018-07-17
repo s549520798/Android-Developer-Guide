@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.lazylee.apiguidedemo.R;
 
@@ -51,7 +55,7 @@ public class RecyclerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.recycler_fragment,container,false);
+        View rootView = inflater.inflate(R.layout.recycler_fragment, container, false);
         mRecyclerView = rootView.findViewById(R.id.recycler_view);
         return rootView;
     }
@@ -59,18 +63,40 @@ public class RecyclerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,false));
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new SampleAdapter(mList);
+        mAdapter.setItemClickListener(new SampleAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                int adapterPosition = mRecyclerView.getChildAdapterPosition(view);
+                int layoutPosition = mRecyclerView.getChildLayoutPosition(view);
+                Toast.makeText(getContext(),"position == " + position + " , layout position == " + layoutPosition
+                 + "  , adapter position == " + adapterPosition,Toast.LENGTH_LONG).show();
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), layoutManager.getOrientation());
+        mRecyclerView.addItemDecoration(itemDecoration);
         for (int i = 0; i < 20; i++) {
-            mList.add("测试数据  : " + i+1);
+            mList.add("测试数据  : " + i + 1);
         }
         mAdapter.notifyDataSetChanged();
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.d(TAG, "onScrollStateChanged:  state ==" + newState);
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING &&
+                        !recyclerView.canScrollVertically(1)){
+                    mAdapter.addFooter("footer");
+                }
+            }
+        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
     }
 }
