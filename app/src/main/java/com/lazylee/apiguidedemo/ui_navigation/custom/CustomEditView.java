@@ -1,15 +1,13 @@
-package com.lazylee.apiguidedemo.ui_navigation.customedit;
+package com.lazylee.apiguidedemo.ui_navigation.custom;
 
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.LayoutDirection;
 import android.view.MotionEvent;
 import android.view.View;
 
