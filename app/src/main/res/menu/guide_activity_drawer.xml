@@ -11,12 +11,11 @@
             android:id="@+id/nav_intents"
             android:title="@string/guide_intent"/>
         <item
-            android:id="@+id/nav_connectivity"
-            android:title="@string/guide_connectivity" />
-        <item
             android:id="@+id/nav_user_interface"
             android:title="@string/guide_user_interface" />
-
+        <item
+            android:id="@+id/nav_connectivity"
+            android:title="@string/guide_connectivity" />
         <item
             android:id="@+id/nav_image"
             android:title="@string/guide_image" />

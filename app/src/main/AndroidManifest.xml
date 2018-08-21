@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lazylee.apiguidedemo">
-    <!--注意 使用android.permission.SET_ALARM 时 没法获取到权限-->
-    <!--<uses-permission android:name="android.permission.SET_ALARM"/>-->
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
+    <!-- 注意 使用android.permission.SET_ALARM 时 没法获取到权限 -->
+    <!-- <uses-permission android:name="android.permission.SET_ALARM"/> -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -30,10 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".intents.CommonIntentActivity"
-            android:parentActivityName=".GuideActivity">
-
-        </activity>
+        <activity
+            android:name=".intents.CommonIntentActivity"
+            android:parentActivityName=".GuideActivity"></activity>
+        <activity android:name=".ui_navigation.CustomViewActivity"></activity>
     </application>
 
 </manifest>

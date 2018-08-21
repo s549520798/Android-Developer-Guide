@@ -14,4 +14,12 @@
     <string name="guide_image"><![CDATA[Image & Graphics]]></string>
     <string name="guide_recycler">RecyclerView</string>
 
+    <!-- UI and Navigation -->
+    <string name="ui_nav_custom_view">CustomView</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+
 </resources>

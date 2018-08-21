@@ -20,6 +20,7 @@ import com.lazylee.apiguidedemo.activities.ActivitiesFragment;
 import com.lazylee.apiguidedemo.connectivity.ConnectivityFragment;
 import com.lazylee.apiguidedemo.intents.IntentsFragment;
 import com.lazylee.apiguidedemo.recyclerview.RecyclerFragment;
+import com.lazylee.apiguidedemo.ui_navigation.UiNavFragment;
 
 import static com.lazylee.apiguidedemo.FragmentHelper.getCurrentVisibleFragment;
 import static com.lazylee.apiguidedemo.FragmentHelper.getFragmentByTag;
@@ -30,6 +31,7 @@ public class GuideActivity extends AppCompatActivity
 
     public static final int TYPE_ACTIVITIES = 0;
     public static final int TYPE_INTENTS = 1;
+    public static final int TYPE_UI_NAVIGATION = 2;
     public static final int TYPE_CONNECTIVITY = 13;
     public static final int TYPE_RECYCLER = 14;
 
@@ -103,13 +105,15 @@ public class GuideActivity extends AppCompatActivity
                 onFragmentChanges(getSupportFragmentManager(), TYPE_INTENTS);
                 actionBar.setTitle("INTENTS");
                 break;
+            case R.id.nav_user_interface:
+                onFragmentChanges(getSupportFragmentManager(), TYPE_UI_NAVIGATION);
+                actionBar.setTitle("UI&Navigation");
+                break;
             case R.id.nav_image:
                 break;
             case R.id.nav_connectivity:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_CONNECTIVITY);
                 actionBar.setTitle("CONNECTIVITY");
-                break;
-            case R.id.nav_user_interface:
                 break;
             case R.id.nav_recycler:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_RECYCLER);
@@ -118,7 +122,7 @@ public class GuideActivity extends AppCompatActivity
                 break;
         }
 
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -127,8 +131,9 @@ public class GuideActivity extends AppCompatActivity
         Fragment currentFragment = getCurrentVisibleFragment(manager);
         ActivitiesFragment activitiesFragment = (ActivitiesFragment) getFragmentByTag(manager, ActivitiesFragment.TAG);
         IntentsFragment intentsFragment = (IntentsFragment) getFragmentByTag(manager, IntentsFragment.TAG);
+        UiNavFragment uiNavFragment = (UiNavFragment) getFragmentByTag(manager, UiNavFragment.TAG);
         ConnectivityFragment connectivityFragment = (ConnectivityFragment) getFragmentByTag(manager, ConnectivityFragment.TAG);
-        RecyclerFragment recyclerFragment = (RecyclerFragment) getFragmentByTag(manager,RecyclerFragment.TAG);
+        RecyclerFragment recyclerFragment = (RecyclerFragment) getFragmentByTag(manager, RecyclerFragment.TAG);
         switch (type) {
             case TYPE_ACTIVITIES:
                 if (activitiesFragment == null) {
@@ -144,6 +149,13 @@ public class GuideActivity extends AppCompatActivity
                     showAndHideFragment(manager, intentsFragment, currentFragment);
                 }
 
+                break;
+            case TYPE_UI_NAVIGATION:
+                if (uiNavFragment == null) {
+                    addAndHideFragment(manager, UiNavFragment.newInstance(), currentFragment);
+                } else {
+                    showAndHideFragment(manager, uiNavFragment, currentFragment);
+                }
                 break;
             case TYPE_CONNECTIVITY:
                 if (connectivityFragment == null) {
