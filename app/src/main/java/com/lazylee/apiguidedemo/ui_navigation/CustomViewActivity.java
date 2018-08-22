@@ -10,9 +10,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CustomViewActivity extends AppCompatActivity {
+
     private static final String TAG = "CustomViewActivity";
 
-    @BindView(R.id.legacy_edit) EditText legacyEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

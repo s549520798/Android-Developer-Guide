@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.lazylee.apiguidedemo.R;
 
+
 public class CustomEditView extends AppCompatEditText {
 
     private Drawable mClearButtonImage;    //drawable 对象并没有 setOnTouchListener
@@ -36,61 +37,67 @@ public class CustomEditView extends AppCompatEditText {
         mClearButtonImage = ResourcesCompat.getDrawable(getResources(),
                 R.drawable.ic_close_opaque_24dp, null);
         // If the clear (X) button is tapped, clear the text.
-        setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if ((getCompoundDrawablesRelative()[2] != null)) {
-                    float clearButtonStart; // Used for LTR languages
-                    float clearButtonEnd;   // Used for RTL languages
-                    boolean isClearButtonClicked = false;
-                    // TODO: Detect the touch in RTL or LTR layout direction.
-                    if (getLayoutDirection() == LAYOUT_DIRECTION_RTL){
-                        // If RTL, get the end of the button on the left side.
-                        clearButtonEnd = mClearButtonImage
-                                .getIntrinsicWidth() + getPaddingStart();
-                        // If the touch occurred before the end of the button,
-                        // set isClearButtonClicked to true.
-                        if (event.getX() < clearButtonEnd) {
-                            isClearButtonClicked = true;
-                        }
-                    }else{
-                        // LTR
-                        // Get the start of the button on the right side.
-                        clearButtonStart = (getWidth() - getPaddingEnd()
-                                - mClearButtonImage.getIntrinsicWidth());
-                        // If the touch occurred after the start of the button,
-                        // set isClearButtonClicked to true.
-                        if (event.getX() > clearButtonStart) {
-                            isClearButtonClicked = true;
-                        }
+        setOnTouchListener((v, event) -> {
+            boolean singleClick = performClick();
+            if ((getCompoundDrawablesRelative()[2] != null)) {
+                float clearButtonStart; // Used for LTR languages
+                float clearButtonEnd;   // Used for RTL languages
+                boolean isClearButtonClicked = false;
+                // Detect the touch in RTL or LTR layout direction.
+                if (getLayoutDirection() == LAYOUT_DIRECTION_RTL){
+                    // If RTL, get the end of the button on the left side.
+                    clearButtonEnd = mClearButtonImage
+                            .getIntrinsicWidth() + getPaddingStart();
+                    // If the touch occurred before the end of the button,
+                    // set isClearButtonClicked to true.
+                    if (event.getX() < clearButtonEnd) {
+                        isClearButtonClicked = true;
                     }
-                    // Check for actions if the button is tapped.
-                    if (isClearButtonClicked) {
-                        // Check for ACTION_DOWN (always occurs before ACTION_UP).
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            // Switch to the black version of clear button.
-                            mClearButtonImage =
-                                    ResourcesCompat.getDrawable(getResources(),
-                                            R.drawable.ic_close_black_24dp, null);
-                            showClearButton();
-                        }
-                        // Check for ACTION_UP.
-                        if (event.getAction() == MotionEvent.ACTION_UP) {
-                            // Switch to the opaque version of clear button.
-                            mClearButtonImage =
-                                    ResourcesCompat.getDrawable(getResources(),
-                                            R.drawable.ic_close_opaque_24dp, null);
-                            // Clear the text and hide the clear button.
-                            getText().clear();
-                            hideClearButton();
-                            return true;
-                        }
-                    } else {
-                        return false;
+                }else{
+                    // LTR
+                    // Get the start of the button on the right side.
+                    clearButtonStart = (getWidth() - getPaddingEnd()
+                            - mClearButtonImage.getIntrinsicWidth());
+                    // If the touch occurred after the start of the button,
+                    // set isClearButtonClicked to true.
+                    if (event.getX() > clearButtonStart) {
+                        isClearButtonClicked = true;
                     }
                 }
+                // Check for actions if the button is tapped.
+                if (isClearButtonClicked && singleClick) {
+                    getText().clear();
+                    hideClearButton();
+                    return true;
+                } else if(isClearButtonClicked){
+                    // Check for ACTION_DOWN (always occurs before ACTION_UP).
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        // Switch to the black version of clear button.
+                        mClearButtonImage =
+                                ResourcesCompat.getDrawable(getResources(),
+                                        R.drawable.ic_close_black_24dp, null);
+                        showClearButton();
+                    }
+                    // Check for ACTION_UP.
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        // Switch to the opaque version of clear button.
+                        mClearButtonImage =
+                                ResourcesCompat.getDrawable(getResources(),
+                                        R.drawable.ic_close_opaque_24dp, null);
+                        // Clear the text and hide the clear button.
+                        getText().clear();
+                        hideClearButton();
+                    }
+                    return true;
+                }else {
+                    return false;
+                }
+            }else{
+                //没有 clear button 显示，所以不处理touch 事件
                 return false;
             }
+
+
         });
 
         // If the text changes, show or hide the clear (X) button.

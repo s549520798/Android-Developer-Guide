@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui_navigation.CustomViewActivity">
 
-    <ImageView
+    <com.lazylee.apiguidedemo.ui_navigation.custom.DialView
         android:id="@+id/dial_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -16,7 +16,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_launcher_foreground"
-        android:background="@drawable/ic_launcher_background"
+        app:fanOnColor="@color/colorAccent"
+        app:fanOffColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
