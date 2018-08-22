@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/gear_three"
+        android:title="三个挡位"
+        app:showAsAction="never"
+        android:orderInCategory="3"/>
+    <item
+        android:id="@+id/gear_four"
+        android:title="四个挡位"
+        app:showAsAction="never"
+        android:orderInCategory="4"/>
+    <item
+        android:id="@+id/gear_five"
+        android:title="五个挡位"
+        app:showAsAction="never"
+        android:orderInCategory="5"/>
+    <item
+        android:id="@+id/gear_six"
+        android:title="六个挡位"
+        app:showAsAction="never"
+        android:orderInCategory="6"/>
+    <item
+        android:id="@+id/gear_seven"
+        android:title="七个挡位"
+        app:showAsAction="never"
+        android:orderInCategory="7"/>
+    <item
+        android:id="@+id/gear_eight"
+        android:title="八个挡位"
+        app:showAsAction="never"
+        android:orderInCategory="8"/>
+</menu>
