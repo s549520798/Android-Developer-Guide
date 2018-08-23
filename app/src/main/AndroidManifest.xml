@@ -33,8 +33,24 @@
         </activity>
         <activity
             android:name=".intents.CommonIntentActivity"
-            android:parentActivityName=".GuideActivity"></activity>
-        <activity android:name=".ui_navigation.CustomViewActivity"></activity>
+            android:parentActivityName=".GuideActivity" />
+        <activity android:name=".ui_navigation.CustomViewActivity" />
+
+        <receiver android:name=".ui_navigation.widgets.NewAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/new_app_widget_info" />
+        </receiver>
+
+        <activity android:name=".ui_navigation.widgets.NewAppWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
