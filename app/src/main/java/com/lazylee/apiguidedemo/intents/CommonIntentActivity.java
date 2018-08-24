@@ -34,7 +34,7 @@ public class CommonIntentActivity extends AppCompatActivity implements View.OnCl
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(TAG);
         }
@@ -53,7 +53,7 @@ public class CommonIntentActivity extends AppCompatActivity implements View.OnCl
                 createAlarm();
                 break;
             case R.id.button_teimer:
-                setTimer("测试Intent",200);
+                setTimer("测试Intent", 200);
                 break;
             case R.id.button_show_alarm:
                 showAlarms();
@@ -64,14 +64,13 @@ public class CommonIntentActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-
     private void createAlarm() {
         Intent intent = new Intent();
         intent.setAction(AlarmClock.ACTION_SET_ALARM);
         intent.putExtra(AlarmClock.EXTRA_MESSAGE, "测试用闹钟");
         intent.putExtra(AlarmClock.EXTRA_HOUR, 5);
         intent.putExtra(AlarmClock.EXTRA_MINUTES, 30);
-        intent.putExtra(AlarmClock.EXTRA_SKIP_UI,false);
+        intent.putExtra(AlarmClock.EXTRA_SKIP_UI, false);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         } else {
@@ -79,7 +78,7 @@ public class CommonIntentActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void setTimer(String message, int seconds){
+    private void setTimer(String message, int seconds) {
         Intent intent = new Intent(AlarmClock.ACTION_SET_TIMER)
                 .putExtra(AlarmClock.EXTRA_MESSAGE, message)
                 .putExtra(AlarmClock.EXTRA_LENGTH, seconds)
@@ -88,13 +87,15 @@ public class CommonIntentActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);
         }
     }
-    private void showAlarms(){
+
+    private void showAlarms() {
         Intent intent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
-        if (intent.resolveActivity(getPackageManager()) != null){
+        if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
-    private void insertDate(){
+
+    private void insertDate() {
 
     }
 }

@@ -50,8 +50,8 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.SampleView
         return mlist == null ? 0 : mlist.size();
     }
 
-    public void addFooter(String string){
-        if (mlist != null){
+    public void addFooter(String string) {
+        if (mlist != null) {
             mlist.add(string);
             notifyDataSetChanged();
         }

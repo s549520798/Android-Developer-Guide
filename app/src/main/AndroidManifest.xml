@@ -51,6 +51,20 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui_navigation.CanvasActivity" />
+        <activity android:name=".ui_navigation.canvas.CanvasOneActivity"
+            android:parentActivityName=".ui_navigation.CanvasActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui_navigation.CanvasActivity" />
+        </activity>
+        <activity android:name=".ui_navigation.canvas.CanvasTwoActivity"
+            android:parentActivityName=".ui_navigation.CanvasActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui_navigation.CanvasActivity" />
+        </activity>
     </application>
 
 </manifest>

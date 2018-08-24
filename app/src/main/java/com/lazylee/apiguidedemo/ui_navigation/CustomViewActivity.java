@@ -21,6 +21,7 @@ public class CustomViewActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.dial_view) DialView mDialView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class CustomViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.custom_activity_menu,menu);
+        getMenuInflater().inflate(R.menu.custom_activity_menu, menu);
         return true;
     }
 

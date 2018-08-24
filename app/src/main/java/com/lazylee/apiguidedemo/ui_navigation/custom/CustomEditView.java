@@ -44,7 +44,7 @@ public class CustomEditView extends AppCompatEditText {
                 float clearButtonEnd;   // Used for RTL languages
                 boolean isClearButtonClicked = false;
                 // Detect the touch in RTL or LTR layout direction.
-                if (getLayoutDirection() == LAYOUT_DIRECTION_RTL){
+                if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
                     // If RTL, get the end of the button on the left side.
                     clearButtonEnd = mClearButtonImage
                             .getIntrinsicWidth() + getPaddingStart();
@@ -53,7 +53,7 @@ public class CustomEditView extends AppCompatEditText {
                     if (event.getX() < clearButtonEnd) {
                         isClearButtonClicked = true;
                     }
-                }else{
+                } else {
                     // LTR
                     // Get the start of the button on the right side.
                     clearButtonStart = (getWidth() - getPaddingEnd()
@@ -69,7 +69,7 @@ public class CustomEditView extends AppCompatEditText {
                     getText().clear();
                     hideClearButton();
                     return true;
-                } else if(isClearButtonClicked){
+                } else if (isClearButtonClicked) {
                     // Check for ACTION_DOWN (always occurs before ACTION_UP).
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
                         // Switch to the black version of clear button.
@@ -89,10 +89,10 @@ public class CustomEditView extends AppCompatEditText {
                         hideClearButton();
                     }
                     return true;
-                }else {
+                } else {
                     return false;
                 }
-            }else{
+            } else {
                 //没有 clear button 显示，所以不处理touch 事件
                 return false;
             }
@@ -109,9 +109,9 @@ public class CustomEditView extends AppCompatEditText {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0 ){
+                if (s.length() == 0) {
                     hideClearButton();
-                }else {
+                } else {
                     showClearButton();
                 }
             }

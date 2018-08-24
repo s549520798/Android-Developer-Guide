@@ -23,7 +23,6 @@ public class ActivitiesFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 
-
     public ActivitiesFragment() {
         // Required empty public constructor
     }

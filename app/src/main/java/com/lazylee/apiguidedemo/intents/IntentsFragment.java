@@ -55,7 +55,7 @@ public class IntentsFragment extends Fragment implements View.OnClickListener {
             case R.id.button:
                 break;
             case R.id.common_intent:
-                Intent intent = new Intent(getContext(),CommonIntentActivity.class);
+                Intent intent = new Intent(getContext(), CommonIntentActivity.class);
                 startActivity(intent);
                 break;
             default:

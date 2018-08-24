@@ -23,7 +23,8 @@ import butterknife.OnClick;
 public class UiNavFragment extends Fragment {
 
     public static final String TAG = "UiNavFragment";
-    @BindView(R.id.ui_nav_custom_view)  Button customBtn;
+    @BindView(R.id.ui_nav_custom_view) Button customBtn;
+    @BindView(R.id.canvas_button) Button canvasButton;
 
     public UiNavFragment() {
         // Required empty public constructor
@@ -57,5 +58,10 @@ public class UiNavFragment extends Fragment {
     @OnClick(R.id.ui_nav_custom_view)
     public void jumpToCustomViewActivity(View view) {
         startActivity(new Intent(view.getContext(), CustomViewActivity.class));
+    }
+
+    @OnClick(R.id.canvas_button)
+    public void jumpToCanvasActivity(View view) {
+        startActivity(new Intent(view.getContext(), CanvasActivity.class));
     }
 }

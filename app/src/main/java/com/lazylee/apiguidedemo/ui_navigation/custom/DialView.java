@@ -92,7 +92,7 @@ public class DialView extends View {
         final float labelRadius = mRadius + 20;
         StringBuffer label = mTempLabel;
         for (int i = 0; i < mSelectCount; i++) {
-            float[] xyData = computeXYForPosition(i, labelRadius,true);
+            float[] xyData = computeXYForPosition(i, labelRadius, true);
             float x = xyData[0];
             float y = xyData[1];
             label.setLength(0);
@@ -102,7 +102,7 @@ public class DialView extends View {
         // Draw the indicator mark.
         final float markerRadius = mRadius - 35;
         float[] xyData = computeXYForPosition(mActiveSelection,
-                markerRadius,false);
+                markerRadius, false);
         float x = xyData[0];
         float y = xyData[1];
         canvas.drawCircle(x, y, 20, mTextPaint);
@@ -116,23 +116,23 @@ public class DialView extends View {
         mRadius = (float) (Math.min(mWidth, mHeight) / 2 * 0.8);
     }
 
-    private float[] computeXYForPosition(final int pos, final float radius,boolean isLabel) {
+    private float[] computeXYForPosition(final int pos, final float radius, boolean isLabel) {
         float[] result = mTempResult;
         Double startAngle;
         Double angle;
         if (mSelectCount > 4) {
             startAngle = Math.PI * (3 / 2d);
-            angle= startAngle + (pos * (Math.PI / mSelectCount));
+            angle = startAngle + (pos * (Math.PI / mSelectCount));
             result[0] = (float) (radius * Math.cos(angle * 2))
                     + (mWidth / 2);
             result[1] = (float) (radius * Math.sin(angle * 2))
                     + (mHeight / 2);
-            if((angle > Math.toRadians(360)) && isLabel) {
+            if ((angle > Math.toRadians(360)) && isLabel) {
                 result[1] += 20;
             }
         } else {
             startAngle = Math.PI * (9 / 8d);
-            angle= startAngle + (pos * (Math.PI / mSelectCount));
+            angle = startAngle + (pos * (Math.PI / mSelectCount));
             result[0] = (float) (radius * Math.cos(angle))
                     + (mWidth / 2);
             result[1] = (float) (radius * Math.sin(angle))

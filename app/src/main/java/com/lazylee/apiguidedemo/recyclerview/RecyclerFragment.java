@@ -71,8 +71,8 @@ public class RecyclerFragment extends Fragment {
             public void onClick(View view, int position) {
                 int adapterPosition = mRecyclerView.getChildAdapterPosition(view);
                 int layoutPosition = mRecyclerView.getChildLayoutPosition(view);
-                Toast.makeText(getContext(),"position == " + position + " , layout position == " + layoutPosition
-                 + "  , adapter position == " + adapterPosition,Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "position == " + position + " , layout position == " + layoutPosition
+                        + "  , adapter position == " + adapterPosition, Toast.LENGTH_LONG).show();
             }
         });
         mRecyclerView.setAdapter(mAdapter);
@@ -88,7 +88,7 @@ public class RecyclerFragment extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 Log.d(TAG, "onScrollStateChanged:  state ==" + newState);
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING &&
-                        !recyclerView.canScrollVertically(1)){
+                        !recyclerView.canScrollVertically(1)) {
                     mAdapter.addFooter("footer");
                 }
             }

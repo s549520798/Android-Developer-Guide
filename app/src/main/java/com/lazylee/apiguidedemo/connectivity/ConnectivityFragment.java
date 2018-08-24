@@ -20,6 +20,7 @@ public class ConnectivityFragment extends Fragment {
     public static final String TAG = "ConnectivityFragment";
 
     private ExpandableListView expandableListView;
+
     public ConnectivityFragment() {
         // Required empty public constructor
     }
@@ -46,7 +47,7 @@ public class ConnectivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.connectivity_fragment,container,false);
+        View rootView = inflater.inflate(R.layout.connectivity_fragment, container, false);
         expandableListView = rootView.findViewById(R.id.expand_list);
 
         return inflater.inflate(R.layout.connectivity_fragment, container, false);
