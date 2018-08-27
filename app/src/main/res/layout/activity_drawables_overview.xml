@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
     tools:context=".images_graphics.DrawablesOverviewActivity">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nested_scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/linear"
@@ -20,8 +22,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:text="使用res/drawable资源生成drawable" />
+                android:padding="8dp"
+                android:text="使用res/drawable资源生成drawable"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
@@ -45,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="16dp"
+        android:visibility="gone"
         app:behavior_hideable="true"
         app:layout_behavior="@string/bottom_sheet_behavior">
 

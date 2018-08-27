@@ -77,7 +77,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui_navigation.CanvasActivity" />
         </activity>
-        <activity android:name=".images_graphics.DrawablesOverviewActivity"></activity>
+        <activity android:name=".images_graphics.DrawablesOverviewActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>
