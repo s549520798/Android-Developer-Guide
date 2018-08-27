@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Region;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -76,6 +77,104 @@ public class ClippedView extends View {
         canvas.save();
         canvas.translate(mColumnOne, mRowOne);
         drawClippedRectangle(canvas);
+        canvas.restore();
+        // 画第二个 长方形
+        // Draw a rectangle that uses the difference between two
+        // clipping rectangles to create a picture frame effect.
+        canvas.save();
+        // Move the origin to the right for the next rectangle.
+        canvas.translate(mColumnnTwo, mRowOne);
+        // Use the subtraction of two clipping rectangles to create a frame.
+        canvas.clipRect(2 * mRectInset, 2 * mRectInset,
+                mClipRectRight-2 * mRectInset, mClipRectBottom-2 * mRectInset);
+        canvas.clipRect(4 * mRectInset, 4 * mRectInset,
+                mClipRectRight-4 * mRectInset, mClipRectBottom-4 * mRectInset,
+                Region.Op.DIFFERENCE);
+        drawClippedRectangle(canvas);
+        canvas.restore();
+        // 第三个
+        // Draw a rectangle that uses a circular clipping region
+        // created from a circular path.
+        canvas.save();
+        canvas.translate(mColumnOne, mRowTwo);
+        // Clears any lines and curves from the path but unlike reset(),
+        // keeps the internal data structure for faster reuse.
+        mPath.rewind();
+        mPath.addCircle(mCircleRadius, mClipRectBottom-mCircleRadius,
+                mCircleRadius, Path.Direction.CCW);
+        canvas.clipPath(mPath, Region.Op.DIFFERENCE);
+        drawClippedRectangle(canvas);
+        canvas.restore();
+        //第四个
+        // Use the intersection of two rectangles as the clipping region.
+        canvas.save();
+        canvas.translate(mColumnnTwo, mRowTwo);
+        canvas.clipRect(mClipRectLeft, mClipRectTop,
+                mClipRectRight-mSmallRectOffset,
+                mClipRectBottom-mSmallRectOffset);
+        canvas.clipRect(mClipRectLeft+mSmallRectOffset,
+                mClipRectTop+mSmallRectOffset,
+                mClipRectRight, mClipRectBottom, Region.Op.INTERSECT);
+        drawClippedRectangle(canvas);
+        canvas.restore();
+        //第五个
+        // You can combine shapes and draw any path to define a clipping region.
+        canvas.save();
+        canvas.translate(mColumnOne, mRowThree);
+        mPath.rewind();
+        mPath.addCircle(mClipRectLeft+mRectInset+mCircleRadius,
+                mClipRectTop+mCircleRadius+mRectInset,
+                mCircleRadius, Path.Direction.CCW);
+        mPath.addRect(mClipRectRight/2-mCircleRadius,
+                mClipRectTop+mCircleRadius+mRectInset,
+                mClipRectRight/2+mCircleRadius,
+                mClipRectBottom-mRectInset,Path.Direction.CCW);
+        canvas.clipPath(mPath);
+        drawClippedRectangle(canvas);
+        canvas.restore();
+        //第六个
+        // Use a rounded rectangle. Use mClipRectRight/4 to draw a circle.
+        canvas.save();
+        canvas.translate(mColumnnTwo, mRowThree);
+        mPath.rewind();
+        mPath.addRoundRect(mRectF, (float)mClipRectRight/4,
+                (float)mClipRectRight/4, Path.Direction.CCW);
+        canvas.clipPath(mPath);
+        drawClippedRectangle(canvas);
+        canvas.restore();
+
+        // Clip the outside around the rectangle.
+        canvas.save();
+        // Move the origin to the right for the next rectangle.
+        canvas.translate(mColumnOne, mRowFour);
+        canvas.clipRect(2 * mRectInset, 2 * mRectInset,
+                mClipRectRight-2*mRectInset,
+                mClipRectBottom-2*mRectInset);
+        drawClippedRectangle(canvas);
+        canvas.restore();
+
+        // Draw text with a translate transformation applied.
+        canvas.save();
+        mPaint.setColor(Color.CYAN);
+        // Align the RIGHT side of the text with the origin.
+        mPaint.setTextAlign(Paint.Align.LEFT);
+        // Apply transformation to canvas.
+        canvas.translate(mColumnnTwo, mTextRow);
+        // Draw text.
+        canvas.drawText(
+                getContext().getString(R.string.translated), 0, 0, mPaint);
+        canvas.restore();
+
+        // Draw text with a translate and skew transformations applied.
+        canvas.save();
+        mPaint.setTextSize(mTextSize);
+        mPaint.setTextAlign(Paint.Align.RIGHT);
+        // Position text.
+        canvas.translate(mColumnnTwo, mTextRow);
+        // Apply skew transformation.
+        canvas.skew(0.2f, 0.3f);
+        canvas.drawText(
+                getContext().getString(R.string.skewed), 0, 0, mPaint);
         canvas.restore();
     }
 

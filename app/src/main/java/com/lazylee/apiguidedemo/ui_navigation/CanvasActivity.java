@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.lazylee.apiguidedemo.R;
 import com.lazylee.apiguidedemo.ui_navigation.canvas.CanvasOneActivity;
+import com.lazylee.apiguidedemo.ui_navigation.canvas.CanvasThreeActivity;
 import com.lazylee.apiguidedemo.ui_navigation.canvas.CanvasTwoActivity;
 
 import butterknife.BindView;
@@ -49,5 +50,9 @@ public class CanvasActivity extends AppCompatActivity {
         startActivity(new Intent(view.getContext(), CanvasTwoActivity.class));
     }
 
+    @OnClick(R.id.canvas_three)
+    public void junpToCanvasThreeActivity(View view) {
+        startActivity(new Intent(view.getContext(), CanvasThreeActivity.class));
+    }
 
 }

@@ -4,12 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.lazylee.apiguidedemo.R;
+import com.lazylee.apiguidedemo.ui_navigation.custom.ClippedView;
 
 public class CanvasThreeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canvas_three);
+        setContentView(new ClippedView(this));
     }
 }

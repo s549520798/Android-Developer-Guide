@@ -51,7 +51,9 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui_navigation.CanvasActivity" />
+        <activity
+            android:name=".ui_navigation.CanvasActivity"
+            android:parentActivityName=".GuideActivity" />
         <activity
             android:name=".ui_navigation.canvas.CanvasOneActivity"
             android:parentActivityName=".ui_navigation.CanvasActivity">
@@ -68,12 +70,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui_navigation.CanvasActivity" />
         </activity>
-        <activity android:name=".ui_navigation.canvas.CanvasThreeActivity"
+        <activity
+            android:name=".ui_navigation.canvas.CanvasThreeActivity"
             android:parentActivityName=".ui_navigation.CanvasActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui_navigation.CanvasActivity" />
         </activity>
+        <activity android:name=".images_graphics.DrawablesOverviewActivity"></activity>
     </application>
 
 </manifest>

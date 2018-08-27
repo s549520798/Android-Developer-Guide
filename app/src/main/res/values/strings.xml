@@ -29,5 +29,13 @@
     <string name="done">完成!</string>
 
     <string name="clipping">剪切</string>
+    <string name="skewed">skewed and</string>
+    <string name="translated">translated text</string>
+
+
+    <string name="cat_bottomappbar_3d">3D</string>
+    <string name="cat_bottomappbar_accelerator">Accelerator</string>
+    <string name="cat_bottomappbar_search">Search</string>
+    <string name="cat_bottomappbar_dashboard">Dashboard</string>
 
 </resources>

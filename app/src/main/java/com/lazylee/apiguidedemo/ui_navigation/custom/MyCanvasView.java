@@ -107,6 +107,7 @@ public class MyCanvasView extends View {
                 break;
             default:
                 // Do nothing.
+                break;
         }
         return true;
     }

@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.lazylee.apiguidedemo.activities.ActivitiesFragment;
 import com.lazylee.apiguidedemo.connectivity.ConnectivityFragment;
+import com.lazylee.apiguidedemo.images_graphics.ImagesAndGraphicsFragment;
 import com.lazylee.apiguidedemo.intents.IntentsFragment;
 import com.lazylee.apiguidedemo.recyclerview.RecyclerFragment;
 import com.lazylee.apiguidedemo.ui_navigation.UiNavFragment;
@@ -32,6 +33,7 @@ public class GuideActivity extends AppCompatActivity
     public static final int TYPE_ACTIVITIES = 0;
     public static final int TYPE_INTENTS = 1;
     public static final int TYPE_UI_NAVIGATION = 2;
+    public static final int TYPE_IMAGES_GRAHPICS = 5;
     public static final int TYPE_CONNECTIVITY = 13;
     public static final int TYPE_RECYCLER = 14;
 
@@ -99,17 +101,19 @@ public class GuideActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.nav_activities:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_ACTIVITIES);
-                actionBar.setTitle("ACTIVITIES");
+                actionBar.setTitle("Activities");
                 break;
             case R.id.nav_intents:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_INTENTS);
-                actionBar.setTitle("INTENTS");
+                actionBar.setTitle("intents and intent filter");
                 break;
             case R.id.nav_user_interface:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_UI_NAVIGATION);
-                actionBar.setTitle("UI&Navigation");
+                actionBar.setTitle("UI & Navigation");
                 break;
             case R.id.nav_image:
+                onFragmentChanges(getSupportFragmentManager(), TYPE_IMAGES_GRAHPICS);
+                actionBar.setTitle("Images & Graphics");
                 break;
             case R.id.nav_connectivity:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_CONNECTIVITY);
@@ -129,11 +133,24 @@ public class GuideActivity extends AppCompatActivity
 
     private void onFragmentChanges(FragmentManager manager, int type) {
         Fragment currentFragment = getCurrentVisibleFragment(manager);
-        ActivitiesFragment activitiesFragment = (ActivitiesFragment) getFragmentByTag(manager, ActivitiesFragment.TAG);
-        IntentsFragment intentsFragment = (IntentsFragment) getFragmentByTag(manager, IntentsFragment.TAG);
-        UiNavFragment uiNavFragment = (UiNavFragment) getFragmentByTag(manager, UiNavFragment.TAG);
-        ConnectivityFragment connectivityFragment = (ConnectivityFragment) getFragmentByTag(manager, ConnectivityFragment.TAG);
-        RecyclerFragment recyclerFragment = (RecyclerFragment) getFragmentByTag(manager, RecyclerFragment.TAG);
+        ActivitiesFragment activitiesFragment = (ActivitiesFragment) getFragmentByTag(
+                manager,
+                ActivitiesFragment.TAG);
+        IntentsFragment intentsFragment = (IntentsFragment) getFragmentByTag(
+                manager,
+                IntentsFragment.TAG);
+        UiNavFragment uiNavFragment = (UiNavFragment) getFragmentByTag(
+                manager,
+                UiNavFragment.TAG);
+        ImagesAndGraphicsFragment imagesAndGraphicsFragment = (ImagesAndGraphicsFragment) getFragmentByTag(
+                manager,
+                ImagesAndGraphicsFragment.TAG);
+        ConnectivityFragment connectivityFragment = (ConnectivityFragment) getFragmentByTag(
+                manager,
+                ConnectivityFragment.TAG);
+        RecyclerFragment recyclerFragment = (RecyclerFragment) getFragmentByTag(
+                manager,
+                RecyclerFragment.TAG);
         switch (type) {
             case TYPE_ACTIVITIES:
                 if (activitiesFragment == null) {
@@ -164,6 +181,13 @@ public class GuideActivity extends AppCompatActivity
                     showAndHideFragment(manager, connectivityFragment, currentFragment);
                 }
 
+                break;
+            case TYPE_IMAGES_GRAHPICS:
+                if (imagesAndGraphicsFragment == null) {
+                    addAndHideFragment(manager, ImagesAndGraphicsFragment.newInstance(), currentFragment);
+                } else {
+                    showAndHideFragment(manager, imagesAndGraphicsFragment, currentFragment);
+                }
                 break;
             case TYPE_RECYCLER:
                 if (recyclerFragment == null) {
