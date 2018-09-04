@@ -77,10 +77,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui_navigation.CanvasActivity" />
         </activity>
-        <activity android:name=".images_graphics.DrawablesOverviewActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
+        <activity
+            android:name=".images_graphics.DrawablesOverviewActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.fragment.FragmentListActivity" />
+        <activity android:name=".activities.fragment.DetailsActivity"></activity>
     </application>
 
 </manifest>
