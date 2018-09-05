@@ -1,13 +1,10 @@
 package com.lazylee.apiguidedemo.activities.fragment;
 
 
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
-import android.util.Log;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import com.lazylee.apiguidedemo.R;
 
 public class FragmentListActivity extends AppCompatActivity {

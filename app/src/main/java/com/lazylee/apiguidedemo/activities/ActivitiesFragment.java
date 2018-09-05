@@ -1,6 +1,7 @@
 package com.lazylee.apiguidedemo.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lazylee.apiguidedemo.R;
+import com.lazylee.apiguidedemo.activities.fragment.FragmentListActivity;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +22,6 @@ import com.lazylee.apiguidedemo.R;
 public class ActivitiesFragment extends Fragment {
 
     public static final String TAG = "ActivitiesFragment";
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -33,10 +37,8 @@ public class ActivitiesFragment extends Fragment {
      *
      * @return A new instance of fragment ActivitiesFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ActivitiesFragment newInstance() {
-        ActivitiesFragment fragment = new ActivitiesFragment();
-        return fragment;
+        return new ActivitiesFragment();
     }
 
     @Override
@@ -48,7 +50,14 @@ public class ActivitiesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activities_fragment, container, false);
+        View view = inflater.inflate(R.layout.activities_fragment, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @OnClick(R.id.fragment_btn)
+    public void jumpToFragmentActivity() {
+        startActivity(new Intent(getActivity(), FragmentListActivity.class));
     }
 
 }

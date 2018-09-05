@@ -1,10 +1,10 @@
 package com.lazylee.apiguidedemo.activities.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,22 +13,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DetailsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DetailsFragment extends Fragment {
-    // Rename parameter arguments, choose names that
-    private static final String ARG_CUR_CHOICE = "cur_choice";
 
+    private static final String TAG = "DetailsFragment";
+
+    private static final String ARG_CUR_CHOICE = "cur_choice";
     private int mCurChoice;
 
-
-    private OnFragmentInteractionListener mListener;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -79,44 +70,54 @@ public class DetailsFragment extends Fragment {
         return scroller;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: is called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: is called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: is called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: is called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: is called");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView: is called");
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+        Log.d(TAG, "onAttach: is called");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        Log.d(TAG, "onDetach: is called");
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 
     public int getShownIndex() {
         return mCurChoice;
