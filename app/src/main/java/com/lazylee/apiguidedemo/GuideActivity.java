@@ -1,12 +1,9 @@
 package com.lazylee.apiguidedemo;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.lazylee.apiguidedemo.activities.ActivitiesFragment;
+import com.lazylee.apiguidedemo.backgroundtasks.BackgroundTasksFragment;
 import com.lazylee.apiguidedemo.connectivity.ConnectivityFragment;
 import com.lazylee.apiguidedemo.images_graphics.ImagesAndGraphicsFragment;
 import com.lazylee.apiguidedemo.intents.IntentsFragment;
@@ -33,7 +31,8 @@ public class GuideActivity extends AppCompatActivity
     public static final int TYPE_ACTIVITIES = 0;
     public static final int TYPE_INTENTS = 1;
     public static final int TYPE_UI_NAVIGATION = 2;
-    public static final int TYPE_IMAGES_GRAHPICS = 5;
+    public static final int TYPE_IMAGES_GRAPHICS = 5;
+    public static final int TYPE_BACKGROUND_TASKS = 7;
     public static final int TYPE_CONNECTIVITY = 13;
     public static final int TYPE_RECYCLER = 14;
 
@@ -112,8 +111,12 @@ public class GuideActivity extends AppCompatActivity
                 actionBar.setTitle("UI & Navigation");
                 break;
             case R.id.nav_image:
-                onFragmentChanges(getSupportFragmentManager(), TYPE_IMAGES_GRAHPICS);
+                onFragmentChanges(getSupportFragmentManager(), TYPE_IMAGES_GRAPHICS);
                 actionBar.setTitle("Images & Graphics");
+                break;
+            case R.id.nav_background_tasks:
+                onFragmentChanges(getSupportFragmentManager(), TYPE_BACKGROUND_TASKS);
+                actionBar.setTitle(R.string.guide_background_tasks);
                 break;
             case R.id.nav_connectivity:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_CONNECTIVITY);
@@ -121,6 +124,7 @@ public class GuideActivity extends AppCompatActivity
                 break;
             case R.id.nav_recycler:
                 onFragmentChanges(getSupportFragmentManager(), TYPE_RECYCLER);
+                actionBar.setTitle(R.string.guide_recycler);
                 break;
             default:
                 break;
@@ -145,6 +149,9 @@ public class GuideActivity extends AppCompatActivity
         ImagesAndGraphicsFragment imagesAndGraphicsFragment = (ImagesAndGraphicsFragment) getFragmentByTag(
                 manager,
                 ImagesAndGraphicsFragment.TAG);
+        BackgroundTasksFragment backgroundTasksFragment = (BackgroundTasksFragment) getFragmentByTag(
+                manager,
+                BackgroundTasksFragment.TAG);
         ConnectivityFragment connectivityFragment = (ConnectivityFragment) getFragmentByTag(
                 manager,
                 ConnectivityFragment.TAG);
@@ -182,11 +189,18 @@ public class GuideActivity extends AppCompatActivity
                 }
 
                 break;
-            case TYPE_IMAGES_GRAHPICS:
+            case TYPE_IMAGES_GRAPHICS:
                 if (imagesAndGraphicsFragment == null) {
                     addAndHideFragment(manager, ImagesAndGraphicsFragment.newInstance(), currentFragment);
                 } else {
                     showAndHideFragment(manager, imagesAndGraphicsFragment, currentFragment);
+                }
+                break;
+            case TYPE_BACKGROUND_TASKS:
+                if (backgroundTasksFragment == null) {
+                    addAndHideFragment(manager, BackgroundTasksFragment.newInstance(), currentFragment);
+                } else {
+                    showAndHideFragment(manager, backgroundTasksFragment, currentFragment);
                 }
                 break;
             case TYPE_RECYCLER:

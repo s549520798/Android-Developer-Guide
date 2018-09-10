@@ -20,6 +20,9 @@
             android:id="@+id/nav_image"
             android:title="@string/guide_image" />
         <item
+            android:id="@+id/nav_background_tasks"
+            android:title="@string/guide_background_tasks" />
+        <item
             android:id="@+id/nav_recycler"
             android:title="@string/guide_recycler" />
     </group>
