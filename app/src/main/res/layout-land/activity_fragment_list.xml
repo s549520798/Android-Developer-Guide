@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/titles"
-        android:name="com.lazylee.apiguidedemo.activities.fragment.TitlesFragment"
+        android:name="com.lazylee.apiguidedemo.coretopics.activities.fragment.TitlesFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />

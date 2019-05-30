@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui_navigation.UiNavFragment">
+    tools:context=".coretopics.ui_navigation.UiNavFragment">
 
     <Button
         android:id="@+id/ui_nav_custom_view"

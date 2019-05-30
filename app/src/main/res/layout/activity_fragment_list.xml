@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.fragment.FragmentListActivity">
+    tools:context=".coretopics.activities.fragment.FragmentListActivity">
     <fragment
         android:id="@+id/titles"
-        android:name="com.lazylee.apiguidedemo.activities.fragment.TitlesFragment"
+        android:name="com.lazylee.apiguidedemo.coretopics.activities.fragment.TitlesFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

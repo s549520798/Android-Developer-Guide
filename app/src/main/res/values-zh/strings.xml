@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">安卓开发者指南</string>
+    <string name="title_activity_guide">导航页</string>
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+    <string name="nav_header_title">安卓开发指南</string>
+    <string name="nav_header_subtitle">developer.android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">设置</string>
+
+    <!--main menu -->
+    <string name="guide_connectivity">连接</string>
+    <string name="guide_activities">Activity</string>
+    <string name="guide_intent">Intent和intent过滤器</string>
+    <string name="guide_user_interface">界面和导航</string>
+    <string name="guide_image">图像和图形</string>
+    <string name="guide_background_tasks">后台任务</string>
+    <string name="guide_recycler">RecyclerView</string>
+    <string name="touch_input">轻触和输入</string>
+
+    <!-- UI and Navigation -->
+    <string name="ui_nav_custom_view">自定义View</string>
+
+
+    <string name="hello_blank_fragment">空fragment</string>
+    <string name="last_name">姓</string>
+    <string name="first_name">名</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="keep_tapping">继续点.</string>
+    <string name="done">完成!</string>
+
+    <string name="clipping">剪切</string>
+    <string name="skewed">skewed and</string>
+    <string name="translated">translated text</string>
+
+
+    <string name="cat_bottomappbar_3d">3D</string>
+    <string name="cat_bottomappbar_accelerator">Accelerator</string>
+    <string name="cat_bottomappbar_search">Search</string>
+    <string name="cat_bottomappbar_dashboard">Dashboard</string>
+
+    <!--    core topic: Touch and Input       -->
+    <string name="touch_and_input_overview">轻触和输入概览</string>
+    <string name="touch_input_content">以下页面涵盖了有关用户输入的所有内容，从基本的触摸输入和手势，到键盘和游戏控制器。 您可以向应用添加复制/粘贴和拼写检查等常用功能，并开发自己的文本服务，以提供可作为应用程序分发给用户的自定义键盘（输入法编辑器），词典和拼写检查器。</string>
+    <string name="input_events_overview">输入事件概览</string>
+</resources>

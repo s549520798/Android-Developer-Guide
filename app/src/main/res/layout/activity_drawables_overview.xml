@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
-    tools:context=".images_graphics.DrawablesOverviewActivity">
+    tools:context=".coretopics.images_graphics.DrawablesOverviewActivity">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nested_scroll"

@@ -7,13 +7,16 @@
     <string name="nav_header_subtitle">developer.android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <!--main menu -->
     <string name="guide_connectivity">Connectivity</string>
-    <string name="guide_activities">Activities</string>
-    <string name="guide_intent">Intents and intent filters</string>
-    <string name="guide_user_interface"><![CDATA[User Interface & navigation]]></string>
+    <string name="guide_activities">Activity</string>
+    <string name="guide_intent">Intent and Intent filters</string>
+    <string name="guide_user_interface"><![CDATA[User Interface & Navigation]]></string>
     <string name="guide_image"><![CDATA[Image & Graphics]]></string>
     <string name="guide_background_tasks">Background Tasks</string>
     <string name="guide_recycler">RecyclerView</string>
+    <string name="touch_input"><![CDATA[Touch & Input]]></string>
 
     <!-- UI and Navigation -->
     <string name="ui_nav_custom_view">CustomView</string>
@@ -26,10 +29,10 @@
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
 
-    <string name="keep_tapping">继续点.</string>
-    <string name="done">完成!</string>
+    <string name="keep_tapping">keep tapping.</string>
+    <string name="done">done!</string>
 
-    <string name="clipping">剪切</string>
+    <string name="clipping">cut</string>
     <string name="skewed">skewed and</string>
     <string name="translated">translated text</string>
 
@@ -38,5 +41,12 @@
     <string name="cat_bottomappbar_accelerator">Accelerator</string>
     <string name="cat_bottomappbar_search">Search</string>
     <string name="cat_bottomappbar_dashboard">Dashboard</string>
+
+    <!--    core topic: Touch and Input       -->
+    <string name="touch_and_input_overview">Touch and Input overview</string>
+    <string name="touch_input_content">The following pages cover everything about user input, from basic touch input and gestures, to keyboards and game controllers. You can add conventient features such as copy/paste and spell checking to your app, and develop your own text services to offer custom keyboards (Input Method Editors), dictionaries, and spelling checkers that you can distribute to users as applications.</string>
+    <string name="input_events_overview">Input Events Overview</string>
+    <string name="use_touch_gesture">Use touch gesture</string>
+
 
 </resources>
