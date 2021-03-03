@@ -1,7 +1,7 @@
 package com.lazylee.apiguidedemo.coretopics.activities.fragment;
 
 import android.content.res.Configuration;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.lazylee.apiguidedemo.R;
