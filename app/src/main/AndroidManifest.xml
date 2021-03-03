@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lazylee.apiguidedemo">
-
+        package="com.lazylee.apiguidedemo">
     <!-- 注意 使用android.permission.SET_ALARM 时 没法获取到权限 -->
     <!-- <uses-permission android:name="android.permission.SET_ALARM"/> -->
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".view.InterfaceActivity"></activity>
         <activity android:name=".MainActivity">
 
             <!-- <intent-filter> -->
@@ -23,8 +23,8 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".GuideActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+                android:name=".GuideActivity"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,8 +32,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".coretopics.intents.CommonIntentActivity"
-            android:parentActivityName=".GuideActivity" />
+                android:name=".coretopics.intents.CommonIntentActivity"
+                android:parentActivityName=".GuideActivity" />
         <activity android:name=".coretopics.ui_navigation.CustomViewActivity" />
 
         <receiver android:name=".coretopics.ui_navigation.widgets.NewAppWidget">
@@ -42,8 +42,8 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/new_app_widget_info" />
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/new_app_widget_info" />
         </receiver>
 
         <activity android:name=".coretopics.ui_navigation.widgets.NewAppWidgetConfigureActivity">
@@ -52,36 +52,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".coretopics.ui_navigation.CanvasActivity"
-            android:parentActivityName=".GuideActivity" />
+                android:name=".coretopics.ui_navigation.CanvasActivity"
+                android:parentActivityName=".GuideActivity" />
         <activity
-            android:name=".coretopics.ui_navigation.canvas.CanvasOneActivity"
-            android:parentActivityName=".coretopics.ui_navigation.CanvasActivity">
+                android:name=".coretopics.ui_navigation.canvas.CanvasOneActivity"
+                android:parentActivityName=".coretopics.ui_navigation.CanvasActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".coretopics.ui_navigation.CanvasActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".coretopics.ui_navigation.CanvasActivity" />
         </activity>
         <activity
-            android:name=".coretopics.ui_navigation.canvas.CanvasTwoActivity"
-            android:parentActivityName=".coretopics.ui_navigation.CanvasActivity">
+                android:name=".coretopics.ui_navigation.canvas.CanvasTwoActivity"
+                android:parentActivityName=".coretopics.ui_navigation.CanvasActivity">
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".coretopics.ui_navigation.CanvasActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".coretopics.ui_navigation.CanvasActivity" />
         </activity>
         <activity
-            android:name=".coretopics.ui_navigation.canvas.CanvasThreeActivity"
-            android:parentActivityName=".coretopics.ui_navigation.CanvasActivity">
+                android:name=".coretopics.ui_navigation.canvas.CanvasThreeActivity"
+                android:parentActivityName=".coretopics.ui_navigation.CanvasActivity">
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".coretopics.ui_navigation.CanvasActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".coretopics.ui_navigation.CanvasActivity" />
         </activity>
         <activity
-            android:name=".coretopics.images_graphics.DrawablesOverviewActivity"
-            android:theme="@style/AppTheme" />
+                android:name=".coretopics.images_graphics.DrawablesOverviewActivity"
+                android:theme="@style/AppTheme" />
         <activity android:name=".coretopics.activities.fragment.FragmentListActivity" />
-        <activity android:name=".coretopics.activities.fragment.DetailsActivity"></activity>
+        <activity android:name=".coretopics.activities.fragment.DetailsActivity" />
     </application>
 
 </manifest>

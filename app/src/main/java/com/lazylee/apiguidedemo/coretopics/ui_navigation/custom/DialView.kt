@@ -1,157 +1,142 @@
-package com.lazylee.apiguidedemo.coretopics.ui_navigation.custom;
+package com.lazylee.apiguidedemo.coretopics.ui_navigation.custom
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import androidx.annotation.Nullable;
-import android.util.AttributeSet;
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.util.AttributeSet
+import android.view.View
+import com.lazylee.apiguidedemo.R
 
-import android.view.View;
-
-import com.lazylee.apiguidedemo.R;
-
-public class DialView extends View {
-
-    private static final int DEFAULT_SELECTION_COUNT = 4;
-
-    private int mSelectCount = 4;
-    private Paint mTextPaint;    //paint for draw text
-    private Paint mDialPaint;    //paint for draw circle background
-
-    private float mWidth;   //宽
-    private float mHeight;  //高
-    private float mRadius;  //半径
-
-    private int mActiveSelection; //当前选择的挡位
-
-    private int mFanOnColor = Color.CYAN;
-    private int mFanOffColor = Color.GREEN;
+class DialView : View {
+    private var mSelectCount = 4
+    private var mTextPaint //paint for draw text
+            : Paint? = null
+    private var mDialPaint //paint for draw circle background
+            : Paint? = null
+    private var mWidth //宽
+            = 0f
+    private var mHeight //高
+            = 0f
+    private var mRadius //半径
+            = 0f
+    private var mActiveSelection //当前选择的挡位
+            = 0
+    private var mFanOnColor = Color.CYAN
+    private var mFanOffColor = Color.GREEN
 
     // String buffer for dial labels and float for ComputeXY result.
-    private final StringBuffer mTempLabel = new StringBuffer(8);
-    private final float[] mTempResult = new float[2];
+    private val mTempLabel = StringBuffer(8)
+    private val mTempResult = FloatArray(2)
 
-    public DialView(Context context) {
-        super(context);
-        init();
+    constructor(context: Context?) : super(context) {
+        init()
     }
 
-    public DialView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public DialView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    @JvmOverloads
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int = 0) : super(context, attrs, defStyleAttr) {
         if (attrs != null) {
-            TypedArray typedArray = getContext().obtainStyledAttributes(attrs,
+            val typedArray = getContext().obtainStyledAttributes(attrs,
                     R.styleable.DialView,
                     0,
-                    0);
+                    0)
             mFanOnColor = typedArray.getColor(R.styleable.DialView_fanOnColor,
-                    mFanOnColor);
+                    mFanOnColor)
             mFanOffColor = typedArray.getColor(R.styleable.DialView_fanOffColor,
-                    mFanOffColor);
-            mSelectCount = typedArray.getInt(R.styleable.DialView_selectCount, DEFAULT_SELECTION_COUNT);
-            typedArray.recycle();
+                    mFanOffColor)
+            mSelectCount = typedArray.getInt(R.styleable.DialView_selectCount, DEFAULT_SELECTION_COUNT)
+            typedArray.recycle()
         }
-        init();
-
+        init()
     }
 
-
-    private void init() {
-        mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setColor(Color.BLACK);
-        mTextPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mTextPaint.setTextAlign(Paint.Align.CENTER);
-        mTextPaint.setTextSize(40f);
-        mDialPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mDialPaint.setColor(mFanOffColor);
+    private fun init() {
+        mTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        mTextPaint!!.color = Color.BLACK
+        mTextPaint!!.style = Paint.Style.FILL_AND_STROKE
+        mTextPaint!!.textAlign = Paint.Align.CENTER
+        mTextPaint!!.textSize = 40f
+        mDialPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        mDialPaint!!.color = mFanOffColor
         // Initialize current selection.
-        mActiveSelection = 0;
+        mActiveSelection = 0
         // Set up onClick listener for this view.
-        setOnClickListener(v -> {
-            mActiveSelection = (mActiveSelection + 1) % mSelectCount;
+        setOnClickListener { v: View? ->
+            mActiveSelection = (mActiveSelection + 1) % mSelectCount
             if (mActiveSelection >= 1) {
-                mDialPaint.setColor(mFanOnColor);
+                mDialPaint!!.color = mFanOnColor
             } else {
-                mDialPaint.setColor(mFanOffColor);
+                mDialPaint!!.color = mFanOffColor
             }
-            invalidate();
-        });
+            invalidate()
+        }
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
         // Draw the dial.
-        canvas.drawCircle(mWidth / 2, mHeight / 2, mRadius, mDialPaint);
+        canvas.drawCircle(mWidth / 2, mHeight / 2, mRadius, mDialPaint!!)
         // Draw the text labels.
-        final float labelRadius = mRadius + 20;
-        StringBuffer label = mTempLabel;
-        for (int i = 0; i < mSelectCount; i++) {
-            float[] xyData = computeXYForPosition(i, labelRadius, true);
-            float x = xyData[0];
-            float y = xyData[1];
-            label.setLength(0);
-            label.append(i);
-            canvas.drawText(label, 0, label.length(), x, y, mTextPaint);
+        val labelRadius = mRadius + 20
+        val label = mTempLabel
+        for (i in 0 until mSelectCount) {
+            val xyData = computeXYForPosition(i, labelRadius, true)
+            val x = xyData[0]
+            val y = xyData[1]
+            label.setLength(0)
+            label.append(i)
+            canvas.drawText(label, 0, label.length, x, y, mTextPaint!!)
         }
         // Draw the indicator mark.
-        final float markerRadius = mRadius - 35;
-        float[] xyData = computeXYForPosition(mActiveSelection,
-                markerRadius, false);
-        float x = xyData[0];
-        float y = xyData[1];
-        canvas.drawCircle(x, y, 20, mTextPaint);
+        val markerRadius = mRadius - 35
+        val xyData = computeXYForPosition(mActiveSelection,
+                markerRadius, false)
+        val x = xyData[0]
+        val y = xyData[1]
+        canvas.drawCircle(x, y, 20f, mTextPaint!!)
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         // Calculate the radius from the width and height.
-        mWidth = w;
-        mHeight = h;
-        mRadius = (float) (Math.min(mWidth, mHeight) / 2 * 0.8);
+        mWidth = w.toFloat()
+        mHeight = h.toFloat()
+        mRadius = (Math.min(mWidth, mHeight) / 2 * 0.8).toFloat()
     }
 
-    private float[] computeXYForPosition(final int pos, final float radius, boolean isLabel) {
-        float[] result = mTempResult;
-        Double startAngle;
-        Double angle;
+    private fun computeXYForPosition(pos: Int, radius: Float, isLabel: Boolean): FloatArray {
+        val result = mTempResult
+        val startAngle: Double
+        val angle: Double
         if (mSelectCount > 4) {
-            startAngle = Math.PI * (3 / 2d);
-            angle = startAngle + (pos * (Math.PI / mSelectCount));
-            result[0] = (float) (radius * Math.cos(angle * 2))
-                    + (mWidth / 2);
-            result[1] = (float) (radius * Math.sin(angle * 2))
-                    + (mHeight / 2);
-            if ((angle > Math.toRadians(360)) && isLabel) {
-                result[1] += 20;
+            startAngle = Math.PI * (3 / 2.0)
+            angle = startAngle + pos * (Math.PI / mSelectCount)
+            result[0] = ((radius * Math.cos(angle * 2)).toFloat()
+                    + mWidth / 2)
+            result[1] = ((radius * Math.sin(angle * 2)).toFloat()
+                    + mHeight / 2)
+            if (angle > Math.toRadians(360.0) && isLabel) {
+                result[1] = result[1] + 20
             }
         } else {
-            startAngle = Math.PI * (9 / 8d);
-            angle = startAngle + (pos * (Math.PI / mSelectCount));
-            result[0] = (float) (radius * Math.cos(angle))
-                    + (mWidth / 2);
-            result[1] = (float) (radius * Math.sin(angle))
-                    + (mHeight / 2);
+            startAngle = Math.PI * (9 / 8.0)
+            angle = startAngle + pos * (Math.PI / mSelectCount)
+            result[0] = ((radius * Math.cos(angle)).toFloat()
+                    + mWidth / 2)
+            result[1] = ((radius * Math.sin(angle)).toFloat()
+                    + mHeight / 2)
         }
-        return result;
-
+        return result
     }
 
-    public int getSelectCount() {
-        return mSelectCount;
+    //调用invalidate 重新绘制view
+    fun setSelectCount(count: Int){
+        mSelectCount = count
+        mActiveSelection = 0
+        mDialPaint!!.color = mFanOffColor
+        invalidate() //调用invalidate 重新绘制view
     }
 
-    public void setSelectCount(int count) {
-        this.mSelectCount = count;
-        this.mActiveSelection = 0;
-        mDialPaint.setColor(mFanOffColor);
-        invalidate();       //调用invalidate 重新绘制view
+    companion object {
+        private const val DEFAULT_SELECTION_COUNT = 4
     }
-
-
 }

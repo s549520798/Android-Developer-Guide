@@ -1,105 +1,96 @@
-package com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas;
+package com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
-import android.view.View;
-import android.widget.ImageView;
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
+import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
+import com.lazylee.apiguidedemo.R
 
-import com.lazylee.apiguidedemo.R;
+class CanvasOneActivity : AppCompatActivity() {
+    private var mCanvas: Canvas? = null
+    private val mPaint = Paint()
+    private val mTextPaint = Paint(Paint.UNDERLINE_TEXT_FLAG)
+    private var mBitmap: Bitmap? = null
+    private val mRect = Rect()
+    private val mBounds = Rect()
+    private var mOffset = OFFSET
+    private var mColorBackground = 0
+    private var mColorRectangle = 0
+    private var mColorAccent = 0
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+    @BindView(R.id.imageView)
+    var mImageView: ImageView? = null
 
-public class CanvasOneActivity extends AppCompatActivity {
-
-    public static final int OFFSET = 120;
-    public static final int MULTIPLIER = 100;
-    private Canvas mCanvas;
-    private Paint mPaint = new Paint();
-    private Paint mTextPaint = new Paint(Paint.UNDERLINE_TEXT_FLAG);
-    private Bitmap mBitmap;
-    private Rect mRect = new Rect();
-    private Rect mBounds = new Rect();
-
-    private int mOffset = OFFSET;
-    private int mColorBackground;
-    private int mColorRectangle;
-    private int mColorAccent;
-
-    @BindView(R.id.imageView) ImageView mImageView;
-    @BindView(R.id.toolbar) Toolbar mToolBar;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canvas_one);
-        ButterKnife.bind(this);
-        setSupportActionBar(mToolBar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        init();
+    @BindView(R.id.toolbar)
+    var mToolBar: Toolbar? = null
+    protected override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_canvas_one)
+        ButterKnife.bind(this)
+        setSupportActionBar(mToolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        init()
     }
 
-    private void init() {
-        mColorBackground = ResourcesCompat.getColor(getResources(),
-                R.color.colorBackground, null);
-        mColorRectangle = ResourcesCompat.getColor(getResources(),
-                R.color.colorRectangle, null);
-        mColorAccent = ResourcesCompat.getColor(getResources(),
-                R.color.colorAccent, null);
-        mPaint.setColor(mColorBackground);
-        mTextPaint.setColor(
-                ResourcesCompat.getColor(getResources(),
-                        R.color.colorPrimaryDark, null)
-        );
-        mTextPaint.setTextSize(70);
+    private fun init() {
+        mColorBackground = ResourcesCompat.getColor(resources,
+                R.color.colorBackground, null)
+        mColorRectangle = ResourcesCompat.getColor(resources,
+                R.color.colorRectangle, null)
+        mColorAccent = ResourcesCompat.getColor(resources,
+                R.color.colorAccent, null)
+        mPaint.color = mColorBackground
+        mTextPaint.color = ResourcesCompat.getColor(resources,
+                R.color.colorPrimaryDark, null)
+        mTextPaint.textSize = 70f
     }
 
     @OnClick(R.id.imageView)
-    public void imageViewClick(View view) {
-        int vWidth = view.getWidth();
-        int vHeight = view.getHeight();
-        int halfWidth = vWidth / 2;
-        int halfHeight = vHeight / 2;
+    fun imageViewClick(view: View) {
+        val vWidth = view.width
+        val vHeight = view.height
+        val halfWidth = vWidth / 2
+        val halfHeight = vHeight / 2
         if (mOffset == OFFSET) {
-            mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
-            mImageView.setImageBitmap(mBitmap);
-            mCanvas = new Canvas(mBitmap);
-            mCanvas.drawColor(mColorBackground);
-            mCanvas.drawText(getString(R.string.keep_tapping), 100, 100, mTextPaint);
-            mOffset += OFFSET;
+            mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888)
+            mImageView!!.setImageBitmap(mBitmap)
+            mCanvas = Canvas(mBitmap!!)
+            mCanvas!!.drawColor(mColorBackground)
+            mCanvas!!.drawText(getString(R.string.keep_tapping), 100f, 100f, mTextPaint)
+            mOffset += OFFSET
         } else {
             if (mOffset < halfWidth && mOffset < halfHeight) {
-                mPaint.setColor(mColorRectangle - MULTIPLIER * mOffset);
-                mRect.set(
-                        mOffset, mOffset, vWidth - mOffset, vHeight - mOffset);
-                mCanvas.drawRect(mRect, mPaint);
+                mPaint.color = mColorRectangle - MULTIPLIER * mOffset
+                mRect[mOffset, mOffset, vWidth - mOffset] = vHeight - mOffset
+                mCanvas!!.drawRect(mRect, mPaint)
                 // Increase the indent.
-                mOffset += OFFSET;
+                mOffset += OFFSET
             } else {
-                mPaint.setColor(mColorAccent);
-                mCanvas.drawCircle(halfWidth, halfHeight, halfWidth / 3, mPaint);
-                String text = getString(R.string.done);
+                mPaint.color = mColorAccent
+                mCanvas!!.drawCircle(halfWidth.toFloat(), halfHeight.toFloat(), (halfWidth / 3).toFloat(), mPaint)
+                val text: String = getString(R.string.done)
                 // Get bounding box for text to calculate where to draw it.
-                mTextPaint.getTextBounds(text, 0, text.length(), mBounds);
+                mTextPaint.getTextBounds(text, 0, text.length, mBounds)
                 // Calculate x and y for text so it's centered.
-                int x = halfWidth - mBounds.centerX();
-                int y = halfHeight - mBounds.centerY();
-                mCanvas.drawText(text, x, y, mTextPaint);
+                val x = halfWidth - mBounds.centerX()
+                val y = halfHeight - mBounds.centerY()
+                mCanvas!!.drawText(text, x.toFloat(), y.toFloat(), mTextPaint)
             }
         }
-        view.invalidate();
+        view.invalidate()
     }
 
-
+    companion object {
+        const val OFFSET = 120
+        const val MULTIPLIER = 100
+    }
 }

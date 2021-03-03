@@ -1,56 +1,46 @@
-package com.lazylee.apiguidedemo.coretopics.images_graphics;
+package com.lazylee.apiguidedemo.coretopics.images_graphics
 
-
-import android.content.Intent;
-import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
-import com.lazylee.apiguidedemo.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
+import com.lazylee.apiguidedemo.R
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ImagesAndGraphicsFragment#newInstance} factory method to
+ * A simple [Fragment] subclass.
+ * Use the [ImagesAndGraphicsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-public class ImagesAndGraphicsFragment extends Fragment {
-
-    public static final String TAG = "ImagesAndGraphicsFrag";
-
-    @BindView(R.id.drawables_overview) Button mDrawablesOverview;
-
-    public ImagesAndGraphicsFragment() {
-        // Required empty public constructor
+class ImagesAndGraphicsFragment : Fragment() {
+    @BindView(R.id.drawables_overview)
+    var mDrawablesOverview: Button? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
-
-    public static ImagesAndGraphicsFragment newInstance() {
-        return new ImagesAndGraphicsFragment();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_images_and_graphics, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        val view: View = inflater.inflate(R.layout.fragment_images_and_graphics, container, false)
+        ButterKnife.bind(this, view)
+        return view
     }
 
     @OnClick(R.id.drawables_overview)
-    public void jumpToDrawablesOverviewActivity(View view) {
-        startActivity(new Intent(view.getContext(), DrawablesOverviewActivity.class));
+    fun jumpToDrawablesOverviewActivity(view: View) {
+        startActivity(Intent(view.context, DrawablesOverviewActivity::class.java))
+    }
+
+    companion object {
+        const val TAG = "ImagesAndGraphicsFrag"
+        fun newInstance(): ImagesAndGraphicsFragment {
+            return ImagesAndGraphicsFragment()
+        }
     }
 }

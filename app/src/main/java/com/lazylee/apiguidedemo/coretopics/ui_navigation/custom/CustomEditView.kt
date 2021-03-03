@@ -1,142 +1,121 @@
-package com.lazylee.apiguidedemo.coretopics.ui_navigation.custom;
+package com.lazylee.apiguidedemo.coretopics.ui_navigation.custom
 
+import android.content.Context
+import android.graphics.drawable.Drawable
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.res.ResourcesCompat
+import com.lazylee.apiguidedemo.R
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.appcompat.widget.AppCompatEditText;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
+class CustomEditView : AppCompatEditText {
+    private var mClearButtonImage //drawable 对象并没有 setOnTouchListener
+            : Drawable? = null
 
-import com.lazylee.apiguidedemo.R;
-
-
-public class CustomEditView extends AppCompatEditText {
-
-    private Drawable mClearButtonImage;    //drawable 对象并没有 setOnTouchListener
-
-    public CustomEditView(Context context) {
-        super(context);
-        init();
+    constructor(context: Context?) : super(context!!) {
+        init()
     }
 
-    public CustomEditView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+    constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs) {
+        init()
     }
 
-    public CustomEditView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context!!, attrs, defStyleAttr) {
+        init()
     }
 
-    private void init() {
-        mClearButtonImage = ResourcesCompat.getDrawable(getResources(),
-                R.drawable.ic_close_opaque_24dp, null);
+    private fun init() {
+        mClearButtonImage = ResourcesCompat.getDrawable(resources,
+                R.drawable.ic_close_opaque_24dp, null)
         // If the clear (X) button is tapped, clear the text.
-        setOnTouchListener((v, event) -> {
-            boolean singleClick = performClick();
-            if ((getCompoundDrawablesRelative()[2] != null)) {
-                float clearButtonStart; // Used for LTR languages
-                float clearButtonEnd;   // Used for RTL languages
-                boolean isClearButtonClicked = false;
+        setOnTouchListener { v: View?, event: MotionEvent ->
+            val singleClick = performClick()
+            if (compoundDrawablesRelative[2] != null) {
+                val clearButtonStart: Float // Used for LTR languages
+                val clearButtonEnd: Float // Used for RTL languages
+                var isClearButtonClicked = false
                 // Detect the touch in RTL or LTR layout direction.
-                if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
+                if (layoutDirection == LAYOUT_DIRECTION_RTL) {
                     // If RTL, get the end of the button on the left side.
-                    clearButtonEnd = mClearButtonImage
-                            .getIntrinsicWidth() + getPaddingStart();
+                    clearButtonEnd = (mClearButtonImage!!.intrinsicWidth.toFloat() + paddingStart).toFloat()
                     // If the touch occurred before the end of the button,
                     // set isClearButtonClicked to true.
-                    if (event.getX() < clearButtonEnd) {
-                        isClearButtonClicked = true;
+                    if (event.x < clearButtonEnd) {
+                        isClearButtonClicked = true
                     }
                 } else {
                     // LTR
                     // Get the start of the button on the right side.
-                    clearButtonStart = (getWidth() - getPaddingEnd()
-                            - mClearButtonImage.getIntrinsicWidth());
+                    clearButtonStart = (width - paddingEnd
+                            - mClearButtonImage!!.intrinsicWidth).toFloat()
                     // If the touch occurred after the start of the button,
                     // set isClearButtonClicked to true.
-                    if (event.getX() > clearButtonStart) {
-                        isClearButtonClicked = true;
+                    if (event.x > clearButtonStart) {
+                        isClearButtonClicked = true
                     }
                 }
                 // Check for actions if the button is tapped.
                 if (isClearButtonClicked && singleClick) {
-                    getText().clear();
-                    hideClearButton();
-                    return true;
+                    text!!.clear()
+                    hideClearButton()
+                    return@setOnTouchListener true
                 } else if (isClearButtonClicked) {
                     // Check for ACTION_DOWN (always occurs before ACTION_UP).
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (event.action == MotionEvent.ACTION_DOWN) {
                         // Switch to the black version of clear button.
-                        mClearButtonImage =
-                                ResourcesCompat.getDrawable(getResources(),
-                                        R.drawable.ic_close_black_24dp, null);
-                        showClearButton();
+                        mClearButtonImage = ResourcesCompat.getDrawable(resources,
+                                R.drawable.ic_close_black_24dp, null)
+                        showClearButton()
                     }
                     // Check for ACTION_UP.
-                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.action == MotionEvent.ACTION_UP) {
                         // Switch to the opaque version of clear button.
-                        mClearButtonImage =
-                                ResourcesCompat.getDrawable(getResources(),
-                                        R.drawable.ic_close_opaque_24dp, null);
+                        mClearButtonImage = ResourcesCompat.getDrawable(resources,
+                                R.drawable.ic_close_opaque_24dp, null)
                         // Clear the text and hide the clear button.
-                        getText().clear();
-                        hideClearButton();
+                        text!!.clear()
+                        hideClearButton()
                     }
-                    return true;
+                    return@setOnTouchListener true
                 } else {
-                    return false;
+                    return@setOnTouchListener false
                 }
             } else {
                 //没有 clear button 显示，所以不处理touch 事件
-                return false;
+                return@setOnTouchListener false
             }
-
-
-        });
+        }
 
         // If the text changes, show or hide the clear (X) button.
-        addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0) {
-                    hideClearButton();
+        addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.isEmpty()) {
+                    hideClearButton()
                 } else {
-                    showClearButton();
+                    showClearButton()
                 }
             }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
+            override fun afterTextChanged(s: Editable) {}
+        })
     }
 
-    private void showClearButton() {
+    private fun showClearButton() {
         //将drawables设置在text末尾
         setCompoundDrawablesRelativeWithIntrinsicBounds(null,
                 null,
                 mClearButtonImage,
-                null);
+                null)
     }
 
-    private void hideClearButton() {
+    private fun hideClearButton() {
         setCompoundDrawablesRelativeWithIntrinsicBounds(null,
                 null,
                 null,
-                null);
+                null)
     }
-
-
 }

@@ -1,47 +1,35 @@
-package com.lazylee.apiguidedemo.coretopics.backgroundtasks;
+package com.lazylee.apiguidedemo.coretopics.backgroundtasks
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import butterknife.ButterKnife
+import com.lazylee.apiguidedemo.R
 
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.lazylee.apiguidedemo.R;
-
-import butterknife.ButterKnife;
-
-
-public class BackgroundTasksFragment extends Fragment {
-
-    public static final String TAG = "BackgroundTasksFragment";
-
-    public BackgroundTasksFragment() {
-        // Required empty public constructor
+class BackgroundTasksFragment : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     */
-    public static BackgroundTasksFragment newInstance() {
-        return new BackgroundTasksFragment();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_background_tasks, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        val view: View = inflater.inflate(R.layout.fragment_background_tasks, container, false)
+        ButterKnife.bind(this, view)
+        return view
     }
 
+    companion object {
+        const val TAG = "BackgroundTasksFragment"
+
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         */
+        fun newInstance(): BackgroundTasksFragment {
+            return BackgroundTasksFragment()
+        }
+    }
 }

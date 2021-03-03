@@ -1,33 +1,29 @@
-package com.lazylee.apiguidedemo.coretopics.activities.fragment;
+package com.lazylee.apiguidedemo.coretopics.activities.fragment
 
-import android.content.res.Configuration;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.res.Configuration
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.lazylee.apiguidedemo.R
 
-import com.lazylee.apiguidedemo.R;
-
-public class DetailsActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
-        if (getResources().getConfiguration().orientation
+class DetailsActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_details)
+        if (resources.configuration.orientation
                 == Configuration.ORIENTATION_LANDSCAPE) {
             // If the screen is now in landscape mode, we can show the
             // dialog in-line with the list so we don't need this activity.
-            finish();
-            return;
+            finish()
+            return
         }
-
         if (savedInstanceState == null) {
             // During initial setup, plug in the details fragment.
-            DetailsFragment details = new DetailsFragment();
-            details.setArguments(getIntent().getExtras());
-            getSupportFragmentManager()
+            val details = DetailsFragment()
+            details.arguments = intent.extras
+            supportFragmentManager
                     .beginTransaction()
                     .add(R.id.container, details)
-                    .commit();
+                    .commit()
         }
     }
 }

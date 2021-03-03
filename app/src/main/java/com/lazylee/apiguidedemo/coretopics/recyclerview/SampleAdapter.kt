@@ -1,92 +1,66 @@
-package com.lazylee.apiguidedemo.coretopics.recyclerview;
+package com.lazylee.apiguidedemo.coretopics.recyclerview
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.lazylee.apiguidedemo.R
+import com.lazylee.apiguidedemo.coretopics.recyclerview.SampleAdapter.SampleViewHolder
+import java.util.*
 
-import com.lazylee.apiguidedemo.R;
-
-import java.util.ArrayList;
-
-public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.SampleViewHolder> {
-
-    private ArrayList<String> mlist;
-    private OnItemClickListener itemClickListener = null;
-    private OnItemLongClickListener itemLongClickListener = null;
-
-    public SampleAdapter(ArrayList<String> mlist) {
-        this.mlist = mlist;
+class SampleAdapter(private val mlist: ArrayList<String>?) : RecyclerView.Adapter<SampleViewHolder>() {
+    private var itemClickListener: OnItemClickListener? = null
+    private var itemLongClickListener: OnItemLongClickListener? = null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_fragment_item, parent, false)
+        return SampleViewHolder(view)
     }
 
-    @NonNull
-    @Override
-    public SampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_fragment_item, parent, false);
-        return new SampleViewHolder(view);
+    override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
+        holder.itemView.setOnClickListener { v -> itemClickListener!!.onClick(v, position) }
+        holder.itemView.setOnLongClickListener { v -> itemLongClickListener!!.onLongClick(v, position) }
+        holder.bindView(position, mlist!![position])
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull SampleViewHolder holder, final int position) {
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClickListener.onClick(v, position);
-            }
-        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return itemLongClickListener.onLongClick(v, position);
-            }
-        });
-        holder.bindView(position, mlist.get(position));
+    override fun getItemCount(): Int {
+        return mlist?.size ?: 0
     }
 
-    @Override
-    public int getItemCount() {
-        return mlist == null ? 0 : mlist.size();
-    }
-
-    public void addFooter(String string) {
+    fun addFooter(string: String) {
         if (mlist != null) {
-            mlist.add(string);
-            notifyDataSetChanged();
+            mlist.add(string)
+            notifyDataSetChanged()
         }
     }
 
-    public void setItemClickListener(OnItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 
-    public void setItemLongClickListener(OnItemLongClickListener itemLongClickListener) {
-        this.itemLongClickListener = itemLongClickListener;
+    fun setItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
+        this.itemLongClickListener = itemLongClickListener
     }
 
-    public class SampleViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView mTvID;
-        private TextView mTvStr;
-
-        public SampleViewHolder(View itemView) {
-            super(itemView);
-            mTvID = itemView.findViewById(R.id.recycler_item_id);
-            mTvStr = itemView.findViewById(R.id.recycler_item_string);
+    inner class SampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val mTvID: TextView
+        private val mTvStr: TextView
+        fun bindView(position: Int, string: String) {
+            mTvID.text = "" + position
+            mTvStr.text = string
         }
 
-        private void bindView(int position, String string) {
-            mTvID.setText("" + position);
-            mTvStr.setText(string);
+        init {
+            mTvID = itemView.findViewById(R.id.recycler_item_id)
+            mTvStr = itemView.findViewById(R.id.recycler_item_string)
         }
     }
 
     public interface OnItemClickListener {
-        void onClick(View view, int position);
+        fun onClick(view: View, position: Int)
     }
 
     public interface OnItemLongClickListener {
-        boolean onLongClick(View view, int position);
+        fun onLongClick(view: View, position: Int): Boolean
     }
 }

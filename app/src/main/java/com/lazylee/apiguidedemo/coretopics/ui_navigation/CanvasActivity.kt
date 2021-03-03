@@ -1,58 +1,58 @@
-package com.lazylee.apiguidedemo.coretopics.ui_navigation;
+package com.lazylee.apiguidedemo.coretopics.ui_navigation
 
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
+import com.lazylee.apiguidedemo.R
+import com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas.CanvasOneActivity
+import com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas.CanvasThreeActivity
+import com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas.CanvasTwoActivity
 
-import android.content.Intent;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
+class CanvasActivity : AppCompatActivity() {
+    @BindView(R.id.toolbar)
+    var mToolbar: Toolbar? = null
 
-import com.lazylee.apiguidedemo.R;
-import com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas.CanvasOneActivity;
-import com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas.CanvasThreeActivity;
-import com.lazylee.apiguidedemo.coretopics.ui_navigation.canvas.CanvasTwoActivity;
+    @BindView(R.id.canvas_one)
+    var mCanvasOneBtn: Button? = null
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+    @BindView(R.id.canvas_two)
+    var mCanvasTwoBtn: Button? = null
 
-public class CanvasActivity extends AppCompatActivity {
+    @BindView(R.id.canvas_three)
+    var mCanvasThreeBtn: Button? = null
 
-    private static final String TAG = "CanvasActivity";
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.canvas_one) Button mCanvasOneBtn;
-    @BindView(R.id.canvas_two) Button mCanvasTwoBtn;
-    @BindView(R.id.canvas_three) Button mCanvasThreeBtn;
-    @BindView(R.id.canvas_four) Button mCanvasFourBtn;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canvas);
-        ButterKnife.bind(this);
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
+    @BindView(R.id.canvas_four)
+    var mCanvasFourBtn: Button? = null
+    protected override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_canvas)
+        ButterKnife.bind(this)
+        setSupportActionBar(mToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     @OnClick(R.id.canvas_one)
-    public void jumpToCanvasOneActivity(View view) {
-        startActivity(new Intent(view.getContext(), CanvasOneActivity.class));
+    fun jumpToCanvasOneActivity(view: View) {
+        startActivity(Intent(view.context, CanvasOneActivity::class.java))
     }
 
     @OnClick(R.id.canvas_two)
-    public void jumpToCanvasTwoActivity(View view) {
-        startActivity(new Intent(view.getContext(), CanvasTwoActivity.class));
+    fun jumpToCanvasTwoActivity(view: View) {
+        startActivity(Intent(view.context, CanvasTwoActivity::class.java))
     }
 
     @OnClick(R.id.canvas_three)
-    public void junpToCanvasThreeActivity(View view) {
-        startActivity(new Intent(view.getContext(), CanvasThreeActivity.class));
+    fun junpToCanvasThreeActivity(view: View) {
+        startActivity(Intent(view.context, CanvasThreeActivity::class.java))
     }
 
+    companion object {
+        private const val TAG = "CanvasActivity"
+    }
 }

@@ -1,55 +1,43 @@
-package com.lazylee.apiguidedemo.coretopics.touch;
+package com.lazylee.apiguidedemo.coretopics.touch
 
-import android.content.Context;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.lazylee.apiguidedemo.R
 
-import com.lazylee.apiguidedemo.R;
-
-
-public class TouchInputFragment extends Fragment {
-
-    public static final String TAG = "TouchInputFragment";
-
-    public TouchInputFragment() {
-        // Required empty public constructor
+class TouchInputFragment : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     * @return A new instance of fragment TouchInputFragment.
-     */
-    public static TouchInputFragment newInstance() {
-        TouchInputFragment fragment = new TouchInputFragment();
-//        Bundle args = new Bundle();
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_touch_input, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+    }
+
+    companion object {
+        const val TAG = "TouchInputFragment"
+
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         * @return A new instance of fragment TouchInputFragment.
+         */
+        fun newInstance(): TouchInputFragment {
+            //        Bundle args = new Bundle();
 //        fragment.setArguments(args);
-        return fragment;
+            return TouchInputFragment()
+        }
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_touch_input, container, false);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
 }
