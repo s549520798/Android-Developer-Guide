@@ -48,5 +48,7 @@
     <string name="input_events_overview">Input Events Overview</string>
     <string name="use_touch_gesture">Use touch gesture</string>
 
+    <!--   interface study -->
+    <string name="hello_Views">Hello Views</string>
 
 </resources>

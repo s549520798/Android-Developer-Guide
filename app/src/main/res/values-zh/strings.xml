@@ -47,4 +47,8 @@
     <string name="touch_and_input_overview">轻触和输入概览</string>
     <string name="touch_input_content">以下页面涵盖了有关用户输入的所有内容，从基本的触摸输入和手势，到键盘和游戏控制器。 您可以向应用添加复制/粘贴和拼写检查等常用功能，并开发自己的文本服务，以提供可作为应用程序分发给用户的自定义键盘（输入法编辑器），词典和拼写检查器。</string>
     <string name="input_events_overview">输入事件概览</string>
+    <string name="use_touch_gesture">使用触摸手势</string>
+
+    <!--   interface study -->
+    <string name="hello_Views">Hello Views</string>
 </resources>

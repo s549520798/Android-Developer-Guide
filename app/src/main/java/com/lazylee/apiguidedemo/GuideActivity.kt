@@ -1,5 +1,6 @@
 package com.lazylee.apiguidedemo
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.ActionBar
@@ -20,6 +21,7 @@ import com.lazylee.apiguidedemo.coretopics.recyclerview.RecyclerFragment
 import com.lazylee.apiguidedemo.coretopics.touch.TouchInputFragment
 import com.lazylee.apiguidedemo.coretopics.ui_navigation.UiNavFragment
 import com.lazylee.apiguidedemo.tools.FragmentHelper
+import com.lazylee.apiguidedemo.view.InterfaceActivity
 
 class GuideActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var actionBar: ActionBar? = null
@@ -42,7 +44,7 @@ class GuideActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private fun setEnterFragment() {
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.container_view, ActivitiesFragment.Companion.newInstance(), ActivitiesFragment.Companion.TAG)
+                .replace(R.id.container_view, ActivitiesFragment.newInstance(), ActivitiesFragment.TAG)
                 .commit()
     }
 
@@ -105,6 +107,9 @@ class GuideActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             R.id.nav_touch_input -> {
                 onFragmentChanges(supportFragmentManager, TYPE_TOUCH_INPUT)
                 actionBar!!.setTitle(R.string.touch_input)
+            }
+            R.id.nav_interface -> {
+                startActivity(Intent(this, InterfaceActivity::class.java))
             }
             else -> {
             }
