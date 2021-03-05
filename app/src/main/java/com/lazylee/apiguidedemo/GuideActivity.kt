@@ -1,5 +1,6 @@
 package com.lazylee.apiguidedemo
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -25,6 +26,11 @@ import com.lazylee.apiguidedemo.view.InterfaceActivity
 
 class GuideActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var actionBar: ActionBar? = null
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.guide_activity)
